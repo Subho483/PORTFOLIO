@@ -29,7 +29,7 @@ Motivated Electrical Engineering student at Kalyani Government Engineering Colle
 
 * WBJEE 2024 – AIR 3513
 * JEE Main 2024 – 96 Percentile
-* Higher Secondary Examination – 94%
+* I.S.C. (Class XII) Indian School Certificate – 94% (Total Aggregate: 564/600 | Best of 4: 376)
 
 ---
 

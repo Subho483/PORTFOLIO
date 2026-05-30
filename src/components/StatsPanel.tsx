@@ -96,8 +96,8 @@ export default function StatsPanel() {
     {
       title: "HS Marks 94%",
       exam: "Higher Secondary Exam",
-      institution: "West Bengal State Board",
-      detail: "Registered Score: 470 / 500",
+      institution: "I.S.C. (Class XII) Indian School Certificate",
+      detail: "Aggregate: 564/600 // Best of 4: 376/400",
       border: "border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,240,255,0.05)]",
       glow: "from-electric-blue/10 to-transparent",
       dot: "bg-electric-blue",
