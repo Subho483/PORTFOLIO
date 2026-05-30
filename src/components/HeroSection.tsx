@@ -133,7 +133,7 @@ export default function HeroSection() {
           className="flex flex-wrap gap-4 mt-6"
         >
           <a
-            href="https://github.com/sahasubho483-star"
+            href="https://github.com/Subho483"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 border border-white/10 hover:border-electric-blue/50 bg-white/[0.02] hover:bg-electric-blue/5 rounded transition-all duration-300 group font-mono text-sm"

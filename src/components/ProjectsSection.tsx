@@ -61,7 +61,7 @@ export default function ProjectsSection() {
         { label: "Battery Cells", value: "3S LiPo 2200mAh" },
       ],
       tags: ["ESP32-RTOS", "C++", "PID Tuning", "IMU Calibration", "I2C/PWM"],
-      github: "https://github.com/sahasubho483-star/esp32-quadcopter",
+      github: "https://github.com/Subho483/esp32-quadcopter",
       log: "TELEMETRY LOG: Attitude locked. Yaw/Pitch/Roll deviation < 1.2 degrees. ESC response latency: 2.1ms.",
       nodes: [
         { id: "esp32", label: "ESP32 MCU", type: "MCU", role: "Flight controller core running dual FreeRTOS tasks", telemetry: "CPU Temp: 42°C | Loop Latency: 2.5ms", x: 180, y: 110 },
@@ -92,7 +92,7 @@ export default function ProjectsSection() {
         { label: "Motors", value: "N20 Micro Metal Gearmotors" },
       ],
       tags: ["Robotics", "C", "Algorithms", "State Machine", "IR Sensors"],
-      github: "https://github.com/sahasubho483-star/mazemerize-solver",
+      github: "https://github.com/Subho483/mazemerize-solver",
       log: "TELEMETRY LOG: Grid mapped (16x16). Solving route found. Shortest path executed in 14.8 seconds.",
       nodes: [
         { id: "atmega", label: "ATmega328P", type: "MCU", role: "Core processing loop mapping maze coordinate grids", telemetry: "Clock: 16MHz | ROM Usage: 64% | State: Active", x: 180, y: 110 },
@@ -123,7 +123,7 @@ export default function ProjectsSection() {
         { label: "Power Source", value: "2x 18650 Li-ion cells" },
       ],
       tags: ["Microcontrollers", "Servo Sweep", "H-Bridge Drivers", "PWM", "C++"],
-      github: "https://github.com/sahasubho483-star/4wd-smart-vehicle",
+      github: "https://github.com/Subho483/4wd-smart-vehicle",
       log: "TELEMETRY LOG: Range sweeps calibrated. Obstacle avoidance threshold: 15cm. Motor current stable.",
       nodes: [
         { id: "mega", label: "ATmega2560", type: "MCU", role: "Main processor board coordinating multiple sweep routines", telemetry: "GPIO Pins: 54 | SRAM Free: 6.2KB | Status: OK", x: 180, y: 110 },
@@ -154,7 +154,7 @@ export default function ProjectsSection() {
         { label: "Visual Maps", value: "React Leaflet API" },
       ],
       tags: ["Next.js", "WebSockets", "Telemetry UI", "Dashboard", "API Integration"],
-      github: "https://github.com/sahasubho483-star/hope-drone-webapp",
+      github: "https://github.com/Subho483/hope-drone-webapp",
       demo: "https://hope-drone.vercel.app",
       log: "TELEMETRY LOG: WebSocket uplink connected. Target coordinates sent. GPS lock: 12 Satellites.",
       nodes: [
@@ -186,7 +186,7 @@ export default function ProjectsSection() {
         { label: "Drive System", value: "Differential DC Drive" },
       ],
       tags: ["PID Tuning", "Optocouplers", "Hardware Calibration", "DC Drive", "C"],
-      github: "https://github.com/sahasubho483-star/line-follower-robot",
+      github: "https://github.com/Subho483/line-follower-robot",
       log: "TELEMETRY LOG: Optocoupler calibration OK. PID loop frequency: 500Hz. Max stable track speed: 1.2m/s.",
       nodes: [
         { id: "atmega", label: "ATmega8 MCU", type: "MCU", role: "8-bit core processing optical array readings at 500Hz", telemetry: "Clock: 8MHz | VCC: 5.0V | Registers: Running", x: 180, y: 110 },
