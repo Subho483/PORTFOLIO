@@ -27,6 +27,9 @@
     "@types/three": "^0.184.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "marked": "^18.0.4",
+    "md-to-pdf": "^5.2.5",
+    "puppeteer": "^25.1.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
