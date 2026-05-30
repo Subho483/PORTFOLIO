@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cyber-bg: #030303;
+  --color-electric-blue: #00F0FF;
+  --color-neon-purple: #BD00FF;
+  --color-accent-white: #FFFFFF;
+  --color-grid-line: rgba(0, 240, 255, 0.05);
+  
+  --font-orbitron: var(--font-orbitron);
+  --font-jetbrains: var(--font-jetbrains-mono);
+}
+
+:root {
+  --background: #030303;
+  --foreground: #ffffff;
+  --electric-blue: #00F0FF;
+  --neon-purple: #BD00FF;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(189, 0, 255, 0.3);
+  border-radius: 3px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+body {
+  background-color: #030303;
+  color: #ffffff;
+  font-family: var(--font-jetbrains-mono), monospace;
+  overflow-x: hidden;
+}
+
+/* Interactive & Cybernetic Elements */
+.glow-blue {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  border-color: rgba(0, 240, 255, 0.6);
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px rgba(189, 0, 255, 0.4);
+  border-color: rgba(189, 0, 255, 0.6);
+}
+
+.text-glow-blue {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
+}
+
+.glass-panel {
+  background: rgba(3, 3, 3, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.glass-panel:hover {
+  border-color: rgba(189, 0, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.08);
+}
+
+/* Cyber grid backdrop */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Diagonal scanning lines */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.03), 
+    rgba(0, 255, 0, 0.01), 
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 6px 100%;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Cyber HUD status dots */
+.hud-dot {
+  position: relative;
+}
+.hud-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* CRT monitor flicker simulation */
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: float 4s ease-in-out infinite;
+}
