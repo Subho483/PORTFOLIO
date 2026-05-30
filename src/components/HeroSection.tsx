@@ -57,7 +57,7 @@ export default function HeroSection() {
       </div>
 
       {/* HUD Telemetry Corner - Top Right */}
-      <div className="absolute top-8 right-8 hidden lg:flex flex-col items-end gap-3 text-[10px] text-white/40 font-mono tracking-widest pointer-events-none z-50">
+      <div className="absolute top-8 right-8 hidden xl:flex flex-col items-end gap-3 text-[10px] text-white/40 font-mono tracking-widest pointer-events-none z-50">
         
         {/* Operator ID Badge */}
         <div className="flex items-center gap-4 bg-[#030303]/50 backdrop-blur-sm border border-white/10 p-2.5 rounded-lg pointer-events-auto group hover:border-electric-blue/50 transition-colors duration-300">
@@ -88,7 +88,7 @@ export default function HeroSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl flex flex-col gap-6"
+        className="max-w-4xl flex flex-col gap-6 mt-16 xl:mt-24"
       >
         {/* System Alert Overlay */}
         <motion.div 
