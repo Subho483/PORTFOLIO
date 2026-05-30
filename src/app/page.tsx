@@ -13,6 +13,7 @@ import Certifications from "@/components/Certifications";
 import Timeline from "@/components/Timeline";
 import ContactConsole from "@/components/ContactConsole";
 import LabInventory from "@/components/LabInventory";
+import LabRepositories from "@/components/LabRepositories";
 
 // Load 3D Canvas dynamically to bypass server-side rendering issues with Three.js
 const CyberCanvas = dynamic(() => import("@/components/CyberCanvas"), {
@@ -46,6 +47,7 @@ export default function Home() {
           <a href="#stats" className="hover:text-neon-purple transition-colors font-bold uppercase">// Stats</a>
           <a href="#skills" className="hover:text-electric-blue transition-colors font-bold uppercase">// Skills</a>
           <a href="#projects" className="hover:text-neon-purple transition-colors font-bold uppercase">// Projects</a>
+          <a href="#repositories" className="hover:text-electric-blue transition-colors font-bold uppercase">// Repos</a>
           <a href="#inventory" className="hover:text-electric-blue transition-colors font-bold uppercase">// Inventory</a>
           <a href="#timeline" className="hover:text-neon-purple transition-colors font-bold uppercase">// Log</a>
           <a href="#contact" className="hover:text-electric-blue transition-colors font-bold uppercase">// Transmit</a>
@@ -172,12 +174,26 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
+        {/* Lab Repositories Section */}
+        <section id="repositories" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
+              <Terminal className="w-4 h-4" />
+              05 // VERSION CONTROL INDEX
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
+              LAB REPOSITORIES
+            </h2>
+          </div>
+          <LabRepositories />
+        </section>
+
         {/* Lab Inventory Section */}
         <section id="inventory" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Cpu className="w-4 h-4" />
-              05 // HARDWARE COMPONENT STOCKPILE
+              06 // HARDWARE COMPONENT STOCKPILE
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               LAB INVENTORY
@@ -191,7 +207,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
               <Award className="w-4 h-4" />
-              06 // TECHNICAL CREDENTIALS
+              07 // TECHNICAL CREDENTIALS
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CERTIFICATIONS
@@ -205,7 +221,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              07 // ARCHIVE CHRONOLOGY
+              08 // ARCHIVE CHRONOLOGY
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               TIMELINE LOG
@@ -219,7 +235,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
               <Send className="w-4 h-4" />
-              08 // SUBSPACE TRANSCEIVER
+              09 // SUBSPACE TRANSCEIVER
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CONTACT CONSOLE

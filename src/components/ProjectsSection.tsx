@@ -33,6 +33,7 @@ interface Project {
   subtitle: string;
   status: "ACTIVE" | "COMPLETED" | "TESTING" | "PROTOTYPE";
   description: string;
+  image: string;
   specs: Spec[];
   tags: string[];
   github?: string;
@@ -54,6 +55,7 @@ export default function ProjectsSection() {
       subtitle: "Embedded Flight Controller & Stabilizer",
       status: "COMPLETED",
       description: "Designed and built an autonomous quadcopter from the chassis up. Engineered a custom flight control system using an ESP32 chip and MPU9250 IMU, implementing cascade PID loops for attitude stabilization.",
+      image: "/projects/esp32_quadcopter.png",
       specs: [
         { label: "Core Processor", value: "ESP32 (Dual Core 240MHz)" },
         { label: "IMU Sensor", value: "MPU9250 (9-axis SPI IMU)" },
@@ -85,6 +87,7 @@ export default function ProjectsSection() {
       subtitle: "Autonomous Micromouse Class Robot",
       status: "COMPLETED",
       description: "An autonomous robotic crawler designed to map and solve complex matrices. Implemented a Flood-Fill coordinate mapping algorithm with Infrared distance sensor arrays for wall detection and alignment.",
+      image: "/projects/maze_solver.png",
       specs: [
         { label: "Controller", value: "ATmega328P" },
         { label: "Sensors", value: "5x Analog IR Array" },
@@ -116,6 +119,7 @@ export default function ProjectsSection() {
       subtitle: "Intelligent Exploration Rover",
       status: "ACTIVE",
       description: "A 4-wheel drive intelligent vehicle engineered for obstacle navigation and telemetry logging. Features ultrasonic sensors and servo mounts to sweep and map boundaries before executing propulsion paths.",
+      image: "/projects/smart_vehicle.png",
       specs: [
         { label: "MCU Board", value: "Arduino Mega 2560" },
         { label: "Motor Driver", value: "L298N Dual H-Bridge" },
@@ -147,6 +151,7 @@ export default function ProjectsSection() {
       subtitle: "Mission Planner & Telemetry Hub",
       status: "TESTING",
       description: "A custom ground control station dashboard that monitors and sends waypoint instructions to drones. Features live simulated video overlay, coordinate plots, battery life gauges, and active GPS lock coordinates.",
+      image: "/projects/hope_drone_webapp.png",
       specs: [
         { label: "Frontend", value: "Next.js / TypeScript" },
         { label: "Styling", value: "Tailwind CSS / Glassmorphism" },
@@ -179,6 +184,7 @@ export default function ProjectsSection() {
       subtitle: "PID-Controlled Trajectory Tracker",
       status: "COMPLETED",
       description: "A high-speed industrial-styled cart designed to follow intricate tracks. Utilizes high-precision optocoupler arrays and an active PID control script to adjust differential motor speeds, preventing track escapes.",
+      image: "/projects/line_follower.png",
       specs: [
         { label: "Control Chip", value: "ATmega8" },
         { label: "Sensor Array", value: "8-Channel TCRT5000" },
@@ -244,6 +250,20 @@ export default function ProjectsSection() {
             </div>
 
             <div className="flex flex-col gap-4">
+              {/* Project Preview Image */}
+              <div className="relative w-full h-48 rounded-md overflow-hidden border border-white/5 bg-[#030303]">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover opacity-75 group-hover:scale-102 group-hover:opacity-90 transition-all duration-500"
+                />
+                {/* HUD scanline and overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none z-10" />
+                <div className="absolute top-2 left-2 px-2 py-0.5 border border-electric-blue/20 bg-black/60 rounded text-[8px] font-mono text-electric-blue uppercase tracking-widest pointer-events-none">
+                  UPLINK LOGICAL VISUALIZATION // OK
+                </div>
+              </div>
+
               {/* Card Header */}
               <div className="flex justify-between items-start">
                 <div className="flex flex-col">

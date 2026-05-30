@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
 
 // Space dust particles component (150-200 particles for performance)
@@ -423,6 +423,67 @@ function DroneModel() {
           <meshStandardMaterial color="#00f0ff" emissive="#00f0ff" emissiveIntensity={0.8} />
         </mesh>
       </group>
+
+      {/* 5.5 CAD TELEMETRY HUD LABELS (Float overlays pointing to drone parts) */}
+      {/* ESP32 FC */}
+      <Html position={[0, 0.38, 0]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="px-2 py-0.5 border border-electric-blue/40 bg-black/85 rounded text-[8px] font-mono font-bold text-electric-blue uppercase tracking-widest whitespace-nowrap glow-blue">
+            ESP32 FC
+          </div>
+          <div className="w-[1px] h-6 bg-gradient-to-b from-electric-blue/50 to-transparent"></div>
+        </div>
+      </Html>
+
+      {/* MPU9250 IMU */}
+      <Html position={[0.14, 0.32, 0.12]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="px-2 py-0.5 border border-neon-purple/40 bg-black/85 rounded text-[8px] font-mono font-bold text-neon-purple uppercase tracking-widest whitespace-nowrap glow-purple">
+            MPU9250 IMU
+          </div>
+          <div className="w-[1px] h-5 bg-gradient-to-b from-neon-purple/50 to-transparent"></div>
+        </div>
+      </Html>
+
+      {/* DJI 2212 Motor */}
+      <Html position={[1.3, 0.44, 1.3]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="px-2 py-0.5 border border-electric-blue/40 bg-black/85 rounded text-[8px] font-mono font-bold text-electric-blue uppercase tracking-widest whitespace-nowrap glow-blue">
+            DJI 2212 920KV
+          </div>
+          <div className="w-[1px] h-6 bg-gradient-to-b from-electric-blue/50 to-transparent"></div>
+        </div>
+      </Html>
+
+      {/* 3S LiPo Battery */}
+      <Html position={[0, -0.42, 0]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="w-[1px] h-6 bg-gradient-to-t from-electric-blue/50 to-transparent"></div>
+          <div className="px-2 py-0.5 border border-electric-blue/40 bg-black/85 rounded text-[8px] font-mono font-bold text-electric-blue uppercase tracking-widest whitespace-nowrap glow-blue">
+            3S LiPo 2200mAh
+          </div>
+        </div>
+      </Html>
+
+      {/* F450 Frame */}
+      <Html position={[-0.65, 0.22, -0.65]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="px-2 py-0.5 border border-neon-purple/40 bg-black/85 rounded text-[8px] font-mono font-bold text-neon-purple uppercase tracking-widest whitespace-nowrap glow-purple">
+            F450 Frame Arm
+          </div>
+          <div className="w-[1px] h-5 bg-gradient-to-b from-neon-purple/50 to-transparent"></div>
+        </div>
+      </Html>
+
+      {/* GPS Module */}
+      <Html position={[-0.25, 0.94, -0.25]} distanceFactor={4.5} center>
+        <div className="flex flex-col items-center pointer-events-none select-none">
+          <div className="px-2 py-0.5 border border-white/35 bg-black/85 rounded text-[8px] font-mono font-bold text-white/80 uppercase tracking-widest whitespace-nowrap">
+            GPS Module
+          </div>
+          <div className="w-[1px] h-5 bg-gradient-to-b from-white/30 to-transparent"></div>
+        </div>
+      </Html>
 
       {/* 6. AMBIENT FIELD ORBIT RING */}
       <mesh rotation={[Math.PI / 2, 0.1, 0]}>
