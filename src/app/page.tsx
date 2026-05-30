@@ -110,7 +110,7 @@ export default function Home() {
               01 // HARDWARE & FIRMWARE DEPT
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
-              ANTI-GRAVITY ENGINEERING LOG
+              LIVE DEVELOPMENT LOG
             </h2>
           </div>
 
