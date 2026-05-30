@@ -3,7 +3,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { Terminal, Shield, Compass, Cpu, Activity, Zap, Award, Calendar, Send } from "lucide-react";
+import { Terminal, Shield, Compass, Cpu, Activity, Zap, Award, Calendar, Send, Target } from "lucide-react";
 
 import HeroSection from "@/components/HeroSection";
 import StatsPanel from "@/components/StatsPanel";
@@ -15,6 +15,7 @@ import ContactConsole from "@/components/ContactConsole";
 import LabInventory from "@/components/LabInventory";
 import LabRepositories from "@/components/LabRepositories";
 import EngineeringFailures from "@/components/EngineeringFailures";
+import FutureMissions from "@/components/FutureMissions";
 
 // Load 3D Canvas dynamically to bypass server-side rendering issues with Three.js
 const CyberCanvas = dynamic(() => import("@/components/CyberCanvas"), {
@@ -51,7 +52,8 @@ export default function Home() {
           <a href="#repositories" className="hover:text-electric-blue transition-colors font-bold uppercase">// Repos</a>
           <a href="#inventory" className="hover:text-electric-blue transition-colors font-bold uppercase">// Inventory</a>
           <a href="#failures" className="hover:text-neon-purple transition-colors font-bold uppercase">// Failures</a>
-          <a href="#timeline" className="hover:text-electric-blue transition-colors font-bold uppercase">// Log</a>
+          <a href="#future" className="hover:text-electric-blue transition-colors font-bold uppercase">// Missions</a>
+          <a href="#timeline" className="hover:text-neon-purple transition-colors font-bold uppercase">// Log</a>
           <a href="#contact" className="hover:text-neon-purple transition-colors font-bold uppercase">// Transmit</a>
         </nav>
 
@@ -239,12 +241,26 @@ export default function Home() {
           <EngineeringFailures />
         </section>
 
+        {/* Future Missions Section */}
+        <section id="future" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
+              <Target className="w-4 h-4" />
+              08 // FUTURE MISSIONS
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
+              ACTIVE R&D LAB
+            </h2>
+          </div>
+          <FutureMissions />
+        </section>
+
         {/* Certifications Section */}
         <section id="certifications" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Award className="w-4 h-4" />
-              08 // TECHNICAL CREDENTIALS
+              09 // TECHNICAL CREDENTIALS
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CERTIFICATIONS
@@ -258,7 +274,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              09 // ARCHIVE CHRONOLOGY
+              10 // ARCHIVE CHRONOLOGY
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               TIMELINE LOG
@@ -272,7 +288,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Send className="w-4 h-4" />
-              10 // SUBSPACE TRANSCEIVER
+              11 // SUBSPACE TRANSCEIVER
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CONTACT CONSOLE
