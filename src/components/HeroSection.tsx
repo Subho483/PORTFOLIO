@@ -171,7 +171,7 @@ export default function HeroSection() {
           </a>
 
           <a
-            href="/Subho_Saha_Resume.pdf"
+            href="/resume.pdf"
             download
             className="flex items-center gap-2 px-5 py-2 border border-neon-purple bg-neon-purple/10 hover:bg-neon-purple/30 rounded transition-all duration-300 glow-purple font-mono text-sm font-bold"
           >
