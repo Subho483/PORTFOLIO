@@ -57,13 +57,31 @@ export default function HeroSection() {
       </div>
 
       {/* HUD Telemetry Corner - Top Right */}
-      <div className="absolute top-8 right-8 hidden lg:flex flex-col items-end gap-1 text-[10px] text-white/40 font-mono tracking-widest pointer-events-none">
-        <div className="flex items-center gap-1.5 text-neon-purple">
-          <Compass className="w-3 h-3" />
-          <span>COORDINATES: {coordinates.lat} / {coordinates.lng}</span>
+      <div className="absolute top-8 right-8 hidden lg:flex flex-col items-end gap-3 text-[10px] text-white/40 font-mono tracking-widest pointer-events-none z-50">
+        
+        {/* Operator ID Badge */}
+        <div className="flex items-center gap-4 bg-[#030303]/50 backdrop-blur-sm border border-white/10 p-2.5 rounded-lg pointer-events-auto group hover:border-electric-blue/50 transition-colors duration-300">
+          <div className="flex flex-col items-end gap-1">
+            <span className="text-electric-blue font-bold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-pulse"></span>
+              OPERATOR LOGGED IN
+            </span>
+            <span className="text-white/70">SUBHO SAHA // ENG-01</span>
+          </div>
+          <div className="w-12 h-12 rounded-full overflow-hidden border border-electric-blue/30 relative">
+             <div className="absolute inset-0 bg-electric-blue/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+             <img src="/profile.png" alt="Operator" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-110" />
+          </div>
         </div>
-        <div>TIME: {systemTime || "CONNECTING..."}</div>
-        <div>SAT-LINK: SECURED (99.8% QOS)</div>
+
+        <div className="flex flex-col items-end gap-1 mt-2">
+          <div className="flex items-center gap-1.5 text-neon-purple">
+            <Compass className="w-3 h-3" />
+            <span>COORDINATES: {coordinates.lat} / {coordinates.lng}</span>
+          </div>
+          <div>TIME: {systemTime || "CONNECTING..."}</div>
+          <div>SAT-LINK: SECURED (99.8% QOS)</div>
+        </div>
       </div>
 
       <motion.div

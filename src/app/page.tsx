@@ -126,56 +126,30 @@ export default function Home() {
                 Whether building responsive cascade PID algorithms for autonomous quadcopters, writing path finding scripts for maze-mapping crawlers, or implementing clean, interactive telemetry dashboard systems in React and TypeScript, I seek to bridge the gap between hardware mechanics and software intelligence.
               </p>
             </div>
-            <div className="lg:col-span-2 flex flex-col gap-6">
-              {/* Operator Image */}
-              <div className="glass-panel p-2 rounded-lg relative overflow-hidden group border border-white/5">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent z-10 pointer-events-none opacity-80"></div>
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 z-20 rounded-lg pointer-events-none"></div>
-                
-                {/* Image */}
-                <div className="w-full aspect-square overflow-hidden rounded-md relative">
-                  <div className="absolute inset-0 bg-electric-blue/10 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
-                  <img 
-                    src="/profile.png" 
-                    alt="Subho Saha - Electrical Engineer" 
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105"
-                  />
+            <div className="lg:col-span-2 glass-panel p-6 rounded-lg flex flex-col gap-4">
+              <span className="text-[10px] font-mono text-neon-purple tracking-widest uppercase font-bold flex items-center gap-1.5">
+                <Terminal className="w-3.5 h-3.5" />
+                LAB SYSTEM READINGS
+              </span>
+              <div className="flex flex-col gap-3 font-mono text-xs">
+                <div className="flex justify-between border-b border-white/5 pb-2">
+                  <span className="text-white/40">OPERATOR:</span>
+                  <span className="text-white/90">SUBHO SAHA</span>
                 </div>
-
-                <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
-                  <span className="text-[10px] font-mono text-white tracking-widest uppercase font-bold drop-shadow-md">
-                    OPERATOR ID: SUBHO_01
+                <div className="flex justify-between border-b border-white/5 pb-2">
+                  <span className="text-white/40">CORE FIELD:</span>
+                  <span className="text-white/90">ELECTRICAL ENGINEERING</span>
+                </div>
+                <div className="flex justify-between border-b border-white/5 pb-2">
+                  <span className="text-white/40">FOCUS DEPTS:</span>
+                  <span className="text-white/90">ROBOTICS / CONTROL SYSTEMS</span>
+                </div>
+                <div className="flex justify-between border-b border-white/5 pb-2">
+                  <span className="text-white/40">LINK STATUS:</span>
+                  <span className="text-emerald-400 font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    STABLE
                   </span>
-                </div>
-              </div>
-
-              {/* Lab System Readings */}
-              <div className="glass-panel p-6 rounded-lg flex flex-col gap-4">
-                <span className="text-[10px] font-mono text-neon-purple tracking-widest uppercase font-bold flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5" />
-                  LAB SYSTEM READINGS
-                </span>
-                <div className="flex flex-col gap-3 font-mono text-xs">
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-white/40">OPERATOR:</span>
-                    <span className="text-white/90">SUBHO SAHA</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-white/40">CORE FIELD:</span>
-                    <span className="text-white/90">ELECTRICAL ENGINEERING</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-white/40">FOCUS DEPTS:</span>
-                    <span className="text-white/90">ROBOTICS / CONTROL SYSTEMS</span>
-                  </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
-                    <span className="text-white/40">LINK STATUS:</span>
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      STABLE
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
