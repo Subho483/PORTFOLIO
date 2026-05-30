@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Terminal, ShieldCheck, RefreshCw, Phone, Mail, GraduationCap, MapPin } from "lucide-react";
+import { Send, Terminal, ShieldCheck, RefreshCw, Phone, Mail, GraduationCap, MapPin, HelpCircle } from "lucide-react";
 
 export default function ContactConsole() {
   const [name, setName] = useState("");
@@ -170,6 +170,23 @@ export default function ContactConsole() {
                 in/subho-saha-5a6a6831b
               </a>
               <span className="text-white/60">Professional grid link</span>
+            </div>
+          </div>
+
+          <div className="glass-panel p-4 rounded-lg border border-white/5 bg-[#030303]/60 relative overflow-hidden flex items-center gap-3 sm:col-span-2">
+            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/10 pointer-events-none" />
+            <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded text-emerald-400">
+              <HelpCircle className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col font-mono text-[10px]">
+              <span className="text-white/30 uppercase tracking-widest">Robotics Q&A</span>
+              <a 
+                href="mailto:kgec.ee5@gmail.com?subject=Robotics%20Question" 
+                className="text-white font-bold font-orbitron tracking-wide text-xs hover:text-emerald-400 transition-colors"
+              >
+                kgec.ee5@gmail.com
+              </a>
+              <span className="text-white/60">Ask me anything about robotics!</span>
             </div>
           </div>
         </div>
