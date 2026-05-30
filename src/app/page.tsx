@@ -14,6 +14,7 @@ import Timeline from "@/components/Timeline";
 import ContactConsole from "@/components/ContactConsole";
 import LabInventory from "@/components/LabInventory";
 import LabRepositories from "@/components/LabRepositories";
+import EngineeringFailures from "@/components/EngineeringFailures";
 
 // Load 3D Canvas dynamically to bypass server-side rendering issues with Three.js
 const CyberCanvas = dynamic(() => import("@/components/CyberCanvas"), {
@@ -49,8 +50,9 @@ export default function Home() {
           <a href="#projects" className="hover:text-neon-purple transition-colors font-bold uppercase">// Projects</a>
           <a href="#repositories" className="hover:text-electric-blue transition-colors font-bold uppercase">// Repos</a>
           <a href="#inventory" className="hover:text-electric-blue transition-colors font-bold uppercase">// Inventory</a>
-          <a href="#timeline" className="hover:text-neon-purple transition-colors font-bold uppercase">// Log</a>
-          <a href="#contact" className="hover:text-electric-blue transition-colors font-bold uppercase">// Transmit</a>
+          <a href="#failures" className="hover:text-neon-purple transition-colors font-bold uppercase">// Failures</a>
+          <a href="#timeline" className="hover:text-electric-blue transition-colors font-bold uppercase">// Log</a>
+          <a href="#contact" className="hover:text-neon-purple transition-colors font-bold uppercase">// Transmit</a>
         </nav>
 
         <div>
@@ -62,6 +64,27 @@ export default function Home() {
           </a>
         </div>
       </header>
+
+      {/* Minimal HUD Sidebar */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden 2xl:flex flex-col gap-6 items-end pointer-events-none">
+        <div className="flex flex-col gap-4 text-[10px] font-mono tracking-widest text-white/40 border-r border-white/20 pr-4 items-end pointer-events-auto">
+          <a href="/resume.pdf" target="_blank" className="hover:text-electric-blue transition-colors uppercase group flex items-center gap-2">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity text-electric-blue text-[8px]">// PDF</span>
+            DOWNLOAD DOSSIER
+          </a>
+          <a href="https://github.com/Subho483" target="_blank" className="hover:text-white transition-colors uppercase">
+            GITHUB
+          </a>
+          <a href="https://linkedin.com/in/subhosaha" target="_blank" className="hover:text-neon-purple transition-colors uppercase">
+            LINKEDIN
+          </a>
+        </div>
+        
+        <div className="flex items-center gap-2 text-[9px] font-mono font-bold tracking-widest text-emerald-400 mt-4 mr-4 pointer-events-none">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          STATUS: ONLINE
+        </div>
+      </div>
 
       {/* Main Container */}
       <main className="flex-1 flex flex-col pt-16">
@@ -202,12 +225,26 @@ export default function Home() {
           <LabInventory />
         </section>
 
+        {/* Engineering Failures Section */}
+        <section id="failures" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
+          <div className="flex flex-col gap-3">
+            <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
+              <Terminal className="w-4 h-4" />
+              07 // ENGINEERING FAILURES & LESSONS
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
+              POST-MORTEM LOGS
+            </h2>
+          </div>
+          <EngineeringFailures />
+        </section>
+
         {/* Certifications Section */}
         <section id="certifications" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
           <div className="flex flex-col gap-3">
-            <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
+            <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Award className="w-4 h-4" />
-              07 // TECHNICAL CREDENTIALS
+              08 // TECHNICAL CREDENTIALS
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CERTIFICATIONS
@@ -219,9 +256,9 @@ export default function Home() {
         {/* Timeline Log Section */}
         <section id="timeline" className="py-24 border-b border-white/5 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
           <div className="flex flex-col gap-3">
-            <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
+            <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              08 // ARCHIVE CHRONOLOGY
+              09 // ARCHIVE CHRONOLOGY
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               TIMELINE LOG
@@ -233,9 +270,9 @@ export default function Home() {
         {/* Contact Transmission Section */}
         <section id="contact" className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full flex flex-col gap-12">
           <div className="flex flex-col gap-3">
-            <span className="text-[10px] font-mono tracking-widest text-neon-purple font-bold uppercase flex items-center gap-2">
+            <span className="text-[10px] font-mono tracking-widest text-electric-blue font-bold uppercase flex items-center gap-2">
               <Send className="w-4 h-4" />
-              09 // SUBSPACE TRANSCEIVER
+              10 // SUBSPACE TRANSCEIVER
             </span>
             <h2 className="text-3xl md:text-5xl font-black font-orbitron tracking-tight text-white uppercase">
               CONTACT CONSOLE

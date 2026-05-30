@@ -27,13 +27,19 @@ interface TwinLink {
   path: string; // SVG path definition
 }
 
+interface ProjectMedia {
+  id: string;
+  label: string;
+  src: string;
+}
+
 interface Project {
   id: string;
   title: string;
   subtitle: string;
   status: "ACTIVE" | "COMPLETED" | "TESTING" | "PROTOTYPE";
   description: string;
-  image: string;
+  media: ProjectMedia[];
   specs: Spec[];
   tags: string[];
   github?: string;
@@ -48,6 +54,14 @@ export default function ProjectsSection() {
   const [activeTwinId, setActiveTwinId] = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<{ projectId: string; nodeId: string } | null>(null);
 
+  const [activeMedia, setActiveMedia] = useState<Record<string, string>>({
+    "01": "cad",
+    "02": "schematic",
+    "03": "schematic",
+    "04": "comms",
+    "05": "schematic"
+  });
+
   const projects: Project[] = [
     {
       id: "01",
@@ -55,7 +69,12 @@ export default function ProjectsSection() {
       subtitle: "Embedded Flight Controller & Stabilizer",
       status: "COMPLETED",
       description: "Designed and built an autonomous quadcopter from the chassis up. Engineered a custom flight control system using an ESP32 chip and MPU9250 IMU, implementing cascade PID loops for attitude stabilization.",
-      image: "/projects/esp32_quadcopter.png",
+      media: [
+        { id: "cad", label: "PHASE 01: CAD DESIGN", src: "/projects/quadcopter_cad_1780118046560.png" },
+        { id: "wiring", label: "PHASE 02: WIRING", src: "/projects/quadcopter_wiring_1780118062450.png" },
+        { id: "testing", label: "PHASE 03: TELEMETRY", src: "/projects/quadcopter_testing_1780118078747.png" },
+        { id: "final", label: "PHASE 04: FINAL BUILD", src: "/projects/esp32_quadcopter.png" }
+      ],
       specs: [
         { label: "Core Processor", value: "ESP32 (Dual Core 240MHz)" },
         { label: "IMU Sensor", value: "MPU9250 (9-axis SPI IMU)" },
@@ -87,7 +106,11 @@ export default function ProjectsSection() {
       subtitle: "Autonomous Micromouse Class Robot",
       status: "COMPLETED",
       description: "An autonomous robotic crawler designed to map and solve complex matrices. Implemented a Flood-Fill coordinate mapping algorithm with Infrared distance sensor arrays for wall detection and alignment.",
-      image: "/projects/maze_solver.png",
+      media: [
+        { id: "schematic", label: "PHASE 01: SCHEMATIC", src: "/projects/maze_solver_schematic_1780118102617.png" },
+        { id: "run", label: "PHASE 02: ALGORITHM RUN", src: "/projects/maze_solver_run_1780118118393.png" },
+        { id: "final", label: "PHASE 03: FINAL BUILD", src: "/projects/maze_solver.png" }
+      ],
       specs: [
         { label: "Controller", value: "ATmega328P" },
         { label: "Sensors", value: "5x Analog IR Array" },
@@ -119,7 +142,11 @@ export default function ProjectsSection() {
       subtitle: "Intelligent Exploration Rover",
       status: "ACTIVE",
       description: "A 4-wheel drive intelligent vehicle engineered for obstacle navigation and telemetry logging. Features ultrasonic sensors and servo mounts to sweep and map boundaries before executing propulsion paths.",
-      image: "/projects/smart_vehicle.png",
+      media: [
+        { id: "schematic", label: "PHASE 01: WIRING", src: "/projects/smart_vehicle_schematic_1780118138752.png" },
+        { id: "sweep", label: "PHASE 02: SONAR SWEEP", src: "/projects/smart_vehicle_sweep_1780118158863.png" },
+        { id: "final", label: "PHASE 03: FINAL BUILD", src: "/projects/smart_vehicle.png" }
+      ],
       specs: [
         { label: "MCU Board", value: "Arduino Mega 2560" },
         { label: "Motor Driver", value: "L298N Dual H-Bridge" },
@@ -151,7 +178,11 @@ export default function ProjectsSection() {
       subtitle: "Mission Planner & Telemetry Hub",
       status: "TESTING",
       description: "A custom ground control station dashboard that monitors and sends waypoint instructions to drones. Features live simulated video overlay, coordinate plots, battery life gauges, and active GPS lock coordinates.",
-      image: "/projects/hope_drone_webapp.png",
+      media: [
+        { id: "comms", label: "PHASE 01: NETWORK MAP", src: "/projects/hope_drone_comms_1780118196994.png" },
+        { id: "ui", label: "PHASE 02: DASHBOARD UI", src: "/projects/hope_drone_telemetry_1780118181117.png" },
+        { id: "final", label: "PHASE 03: PROTOTYPE", src: "/projects/hope_drone_webapp.png" }
+      ],
       specs: [
         { label: "Frontend", value: "Next.js / TypeScript" },
         { label: "Styling", value: "Tailwind CSS / Glassmorphism" },
@@ -184,7 +215,11 @@ export default function ProjectsSection() {
       subtitle: "PID-Controlled Trajectory Tracker",
       status: "COMPLETED",
       description: "A high-speed industrial-styled cart designed to follow intricate tracks. Utilizes high-precision optocoupler arrays and an active PID control script to adjust differential motor speeds, preventing track escapes.",
-      image: "/projects/line_follower.png",
+      media: [
+        { id: "schematic", label: "PHASE 01: PCB DESIGN", src: "/projects/line_follower_schematic_1780118216756.png" },
+        { id: "calibration", label: "PHASE 02: CALIBRATION", src: "/projects/line_follower_calibration_1780118231204.png" },
+        { id: "final", label: "PHASE 03: FINAL BUILD", src: "/projects/line_follower.png" }
+      ],
       specs: [
         { label: "Control Chip", value: "ATmega8" },
         { label: "Sensor Array", value: "8-Channel TCRT5000" },
@@ -250,22 +285,52 @@ export default function ProjectsSection() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {/* Project Preview Image */}
-              <div className="relative w-full h-48 rounded-md overflow-hidden border border-white/5 bg-[#030303]">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover opacity-75 group-hover:scale-102 group-hover:opacity-90 transition-all duration-500"
-                />
-                {/* HUD scanline and overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none z-10" />
-                <div className="absolute top-2 left-2 px-2 py-0.5 border border-electric-blue/20 bg-black/60 rounded text-[8px] font-mono text-electric-blue uppercase tracking-widest pointer-events-none">
-                  UPLINK LOGICAL VISUALIZATION // OK
+              
+              {/* Build Phase Media Hub */}
+              <div className="flex flex-col gap-2 relative z-20">
+                <div className="relative w-full h-48 rounded-md overflow-hidden border border-white/5 bg-[#030303]">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeMedia[project.id]}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 0.85, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      src={project.media.find(m => m.id === activeMedia[project.id])?.src || project.media[0].src}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 absolute inset-0"
+                    />
+                  </AnimatePresence>
+                  
+                  {/* CRT Scanline Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-transparent pointer-events-none z-10" />
+                  <div className="absolute inset-0 pointer-events-none z-10 opacity-30 mix-blend-overlay bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
+                  
+                  <div className="absolute top-2 left-2 px-2 py-0.5 border border-electric-blue/20 bg-black/60 rounded text-[8px] font-mono text-electric-blue uppercase tracking-widest pointer-events-none z-20 backdrop-blur-sm">
+                    {project.media.find(m => m.id === activeMedia[project.id])?.label}
+                  </div>
+                </div>
+
+                {/* Media Selectors */}
+                <div className="flex gap-1.5 mt-1 overflow-x-auto pb-1 no-scrollbar relative z-20">
+                  {project.media.map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setActiveMedia(prev => ({ ...prev, [project.id]: m.id }))}
+                      className={`px-2.5 py-1 rounded text-[8px] font-mono tracking-widest whitespace-nowrap transition-colors duration-300 border ${
+                        activeMedia[project.id] === m.id
+                          ? "border-electric-blue text-electric-blue bg-electric-blue/10 glow-blue"
+                          : "border-white/10 text-white/40 hover:text-white/80 hover:border-white/30"
+                      }`}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
               {/* Card Header */}
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between items-start mt-2 relative z-20">
                 <div className="flex flex-col">
                   <span className="text-[10px] font-mono tracking-widest text-white/40 uppercase">
                     PROJECT // {project.id}
@@ -293,12 +358,12 @@ export default function ProjectsSection() {
               </div>
 
               {/* Description */}
-              <p className="text-xs text-white/70 font-mono leading-relaxed">
+              <p className="text-xs text-white/70 font-mono leading-relaxed relative z-20">
                 {project.description}
               </p>
 
               {/* Technical Specifications HUD */}
-              <div className="border border-white/5 bg-white/[0.01] rounded p-3.5 font-mono text-xs flex flex-col gap-2 relative">
+              <div className="border border-white/5 bg-white/[0.01] rounded p-3.5 font-mono text-xs flex flex-col gap-2 relative z-20">
                 {/* Tech drawing horizontal divider line */}
                 <div className="absolute top-0 left-0 w-2 h-[1px] bg-electric-blue"></div>
                 <div className="absolute top-0 left-0 h-2 w-[1px] bg-electric-blue"></div>
@@ -318,7 +383,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Technologies Tag List */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1.5 relative z-20">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
@@ -331,7 +396,7 @@ export default function ProjectsSection() {
             </div>
 
             {/* Diagnostics Stream & Actions */}
-            <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-white/5">
+            <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-white/5 relative z-20">
               {/* Fake Realtime Telemetry Log */}
               <div className="text-[9px] font-mono text-electric-blue/70 bg-electric-blue/[0.02] border border-electric-blue/10 px-2.5 py-1.5 rounded flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-pulse"></span>
@@ -345,7 +410,7 @@ export default function ProjectsSection() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white font-mono transition-colors group/btn"
+                      className="flex items-center gap-1.5 text-xs text-white/60 hover:text-white font-mono transition-colors group/btn relative z-30"
                     >
                       <svg 
                         className="w-3.5 h-3.5 fill-white/60 group-hover/btn:fill-white transition-colors duration-300" 
@@ -361,7 +426,7 @@ export default function ProjectsSection() {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs text-electric-blue hover:text-cyan-300 font-mono transition-colors group/btn"
+                      className="flex items-center gap-1.5 text-xs text-electric-blue hover:text-cyan-300 font-mono transition-colors group/btn relative z-30"
                     >
                       <ExternalLink className="w-3.5 h-3.5 text-electric-blue group-hover/btn:text-cyan-300 transition-colors" />
                       <span>Live Demo</span>
@@ -376,7 +441,7 @@ export default function ProjectsSection() {
                     setActiveTwinId(newId);
                     setSelectedNode(null);
                   }}
-                  className={`flex items-center gap-1.5 px-3 py-1 border rounded-md font-mono text-[10px] font-bold uppercase transition-all duration-300 tracking-wider hover:-translate-y-0.5 ${
+                  className={`flex items-center gap-1.5 px-3 py-1 border rounded-md font-mono text-[10px] font-bold uppercase transition-all duration-300 tracking-wider hover:-translate-y-0.5 relative z-30 ${
                     activeTwinId === project.id
                       ? "border-neon-purple text-neon-purple bg-neon-purple/10 glow-purple"
                       : "border-electric-blue/40 text-electric-blue bg-electric-blue/5 hover:border-electric-blue hover:bg-electric-blue/10 glow-blue"
@@ -396,7 +461,7 @@ export default function ProjectsSection() {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="mt-6 border-t border-white/10 pt-5 flex flex-col gap-4 overflow-hidden"
+                  className="mt-6 border-t border-white/10 pt-5 flex flex-col gap-4 overflow-hidden relative z-20"
                 >
                   <div className="flex items-center justify-between text-[10px] font-mono text-white/50 uppercase tracking-widest">
                     <span className="flex items-center gap-1.5 text-neon-purple">

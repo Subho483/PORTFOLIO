@@ -64,10 +64,10 @@ export default function StatsPanel() {
       icon: <Cpu className="w-5 h-5 text-electric-blue" />,
     },
     {
-      label: "Lines of Embedded Code",
-      value: 50000,
-      suffix: "+ lines",
-      desc: "Bare-metal C/C++, FreeRTOS threads",
+      label: "Hardware Tests",
+      value: 100,
+      suffix: "+ tests",
+      desc: "Component calibration, bench & field testing",
       icon: <Activity className="w-5 h-5 text-neon-purple" />,
     },
   ];

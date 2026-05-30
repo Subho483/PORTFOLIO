@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Database, Search, Cpu, Thermometer, Battery, Shield, Box } from "lucide-react";
+import { Database, Search, Cpu, Thermometer, Battery, Shield, Box, Crosshair } from "lucide-react";
 
 interface InventoryItem {
   name: string;
@@ -10,12 +10,14 @@ interface InventoryItem {
   category: "mcu" | "sensor" | "driver" | "power" | "all";
   desc: string;
   specs: string;
+  details: string[];
   status: "AVAILABLE" | "DEPLOYED" | "TESTING";
 }
 
 export default function LabInventory() {
   const [activeCategory, setActiveCategory] = useState<"mcu" | "sensor" | "driver" | "power" | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [inspectedItem, setInspectedItem] = useState<string | null>(null);
 
   const inventory: InventoryItem[] = [
     {
@@ -24,6 +26,7 @@ export default function LabInventory() {
       category: "mcu",
       desc: "Wi-Fi & Bluetooth microcontrollers. Primary choice for wireless ESP-NOW drone telemetry and web servers.",
       specs: "Dual-Core 240MHz // 4MB Flash // Wi-Fi & BLE",
+      details: ["GPIO21 -> SDA", "GPIO22 -> SCL", "ESP-NOW Enabled", "3.3V Logic", "Dual FreeRTOS Cores"],
       status: "AVAILABLE",
     },
     {
@@ -32,6 +35,7 @@ export default function LabInventory() {
       category: "mcu",
       desc: "Compact ATmega328P boards for basic motor control, sensor interfacing, and small line-followers.",
       specs: "8-bit AVR // 16MHz // 32KB Flash // 5V Logic",
+      details: ["Pin A4 -> SDA", "Pin A5 -> SCL", "6 Hardware PWM Channels", "5V TTL Logic", "14 Digital I/O"],
       status: "AVAILABLE",
     },
     {
@@ -40,6 +44,7 @@ export default function LabInventory() {
       category: "sensor",
       desc: "9-axis motion tracking sensor modules containing 3-axis gyro, accelerometer, and magnetometer.",
       specs: "SPI/I2C // 16-bit ADC // Low-drift alignment",
+      details: ["Accel + Gyro (6-DOF)", "Magnetometer (3-DOF)", "I2C/SPI Support", "Onboard Sensor Fusion"],
       status: "DEPLOYED",
     },
     {
@@ -48,6 +53,7 @@ export default function LabInventory() {
       category: "driver",
       desc: "16-channel 12-bit PWM I2C bus driver. Used to coordinate multi-joint robotic limbs and servo steering.",
       specs: "I2C interface // 16 Servo Channels // 24Hz - 1525Hz",
+      details: ["I2C Address: 0x40", "12-bit Resolution (4096 steps)", "Internal 25MHz Oscillator", "5V Logic Compliant"],
       status: "TESTING",
     },
     {
@@ -56,6 +62,7 @@ export default function LabInventory() {
       category: "driver",
       desc: "Dual H-bridge motor driver carrier. Drives low-voltage DC motors with integrated current limiting.",
       specs: "Dual H-Bridge // 1.2A per channel // Over-temp cutoff",
+      details: ["2.7V to 10.8V Range", "1.2A Continuous (2A Peak)", "Built-in Current Limiting", "Thermal Shutdown"],
       status: "AVAILABLE",
     },
     {
@@ -64,6 +71,7 @@ export default function LabInventory() {
       category: "driver",
       desc: "High-efficiency MOSFET H-bridge motor drivers. Perfect for N20 motors in maze solving robots.",
       specs: "Dual H-Bridge // 1.2A continuous (3.2A peak) // 15V max",
+      details: ["MOSFET H-Bridge Design", "Standby Power-saving Mode", "CW/CCW/Short Brake Modes", "100kHz PWM Input"],
       status: "DEPLOYED",
     },
     {
@@ -72,6 +80,7 @@ export default function LabInventory() {
       category: "sensor",
       desc: "Active ultrasonic distance sweep triggers for boundary detection and terrain obstacle avoidance.",
       specs: "2cm - 400cm range // 15° beam angle // 5V Trigger",
+      details: ["Trigger: 10µs High Pulse", "Echo: Proportional Length", "Acoustic Freq: 40kHz", "Resolution: 3mm"],
       status: "AVAILABLE",
     },
     {
@@ -80,6 +89,7 @@ export default function LabInventory() {
       category: "sensor",
       desc: "Time-of-Flight ranging sensors using invisible vertical lasers to measure height and lock hovering altitudes.",
       specs: "I2C interface // 940nm Laser // Max 2m distance",
+      details: ["940nm VCSEL Emitter", "SPAD Receiving Array", "Fast Mode: <30ms", "I2C Comm Interface"],
       status: "DEPLOYED",
     },
     {
@@ -88,6 +98,7 @@ export default function LabInventory() {
       category: "power",
       desc: "High-discharge lithium-polymer battery packs powering high-thrust quadcopter brushless DC motors.",
       specs: "11.1V Nominal // 2200mAh capacity // 35C Discharge",
+      details: ["11.1V Nominal (12.6V Max)", "2200mAh Capacity", "35C Continuous Discharge", "XT60 Connector"],
       status: "AVAILABLE",
     },
     {
@@ -96,6 +107,7 @@ export default function LabInventory() {
       category: "power",
       desc: "High-torque miniature DC gearmotors with metal gearboxes. Standard drive for micro robotics.",
       specs: "6V rating // 300 RPM // 50:1 reduction // carbon brushes",
+      details: ["6V Nominal Voltage", "300 RPM No-Load", "50:1 Gear Ratio", "Stall Current: 1.6A"],
       status: "AVAILABLE",
     }
   ];
@@ -174,10 +186,15 @@ export default function LabInventory() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="glass-panel p-5 rounded-lg border border-white/5 bg-[#030303]/40 flex flex-col justify-between hover:border-electric-blue/20 transition-all duration-300 relative group overflow-hidden"
+              onClick={() => setInspectedItem(inspectedItem === item.name ? null : item.name)}
+              className={`glass-panel p-5 rounded-lg border bg-[#030303]/40 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden cursor-pointer ${
+                inspectedItem === item.name ? "border-electric-blue/50 glow-blue" : "border-white/5 hover:border-electric-blue/20"
+              }`}
             >
               {/* Corner decor line */}
-              <div className="absolute top-0 right-0 w-6 h-6 border-r border-t border-white/10 pointer-events-none group-hover:border-electric-blue/30 transition-colors" />
+              <div className={`absolute top-0 right-0 w-6 h-6 border-r border-t pointer-events-none transition-colors ${
+                inspectedItem === item.name ? "border-electric-blue/70" : "border-white/10 group-hover:border-electric-blue/30"
+              }`} />
 
               <div className="flex flex-col gap-2">
                 {/* Header */}
@@ -186,7 +203,9 @@ export default function LabInventory() {
                     <span className="text-[8px] font-mono text-white/30 uppercase tracking-widest">
                       QTY // {item.qty}
                     </span>
-                    <h4 className="text-base font-orbitron font-extrabold text-white mt-0.5 tracking-wide group-hover:text-electric-blue transition-colors">
+                    <h4 className={`text-base font-orbitron font-extrabold mt-0.5 tracking-wide transition-colors ${
+                      inspectedItem === item.name ? "text-electric-blue" : "text-white group-hover:text-electric-blue"
+                    }`}>
                       {item.name}
                     </h4>
                   </div>
@@ -200,6 +219,29 @@ export default function LabInventory() {
                   {item.desc}
                 </p>
               </div>
+
+              {/* Expandable Inspector Panel */}
+              <AnimatePresence>
+                {inspectedItem === item.name && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="mt-3 pt-3 border-t border-white/10 flex flex-col gap-1.5 overflow-hidden"
+                  >
+                    <span className="text-[8px] uppercase font-bold text-electric-blue tracking-widest mb-1 flex items-center gap-1.5">
+                      <Crosshair className="w-3 h-3" />
+                      INSPECTOR PROBE ACTIVE
+                    </span>
+                    {item.details.map((detail, dIdx) => (
+                      <div key={dIdx} className="flex items-center gap-2 text-[10px] font-mono text-white/80">
+                        <div className="w-1 h-1 rounded-full bg-electric-blue/50 shadow-[0_0_5px_rgba(0,240,255,0.8)]"></div>
+                        {detail}
+                      </div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Hardware Specifications */}
               <div className="mt-4 pt-3 border-t border-white/5 flex flex-col gap-1 text-[9px] font-mono">

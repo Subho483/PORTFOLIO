@@ -435,11 +435,11 @@ function DroneModel() {
         </div>
       </Html>
 
-      {/* MPU9250 IMU */}
+      {/* MPU9250 */}
       <Html position={[0.14, 0.32, 0.12]} distanceFactor={4.5} center>
         <div className="flex flex-col items-center pointer-events-none select-none">
           <div className="px-2 py-0.5 border border-neon-purple/40 bg-black/85 rounded text-[8px] font-mono font-bold text-neon-purple uppercase tracking-widest whitespace-nowrap glow-purple">
-            MPU9250 IMU
+            MPU9250
           </div>
           <div className="w-[1px] h-5 bg-gradient-to-b from-neon-purple/50 to-transparent"></div>
         </div>
@@ -460,7 +460,7 @@ function DroneModel() {
         <div className="flex flex-col items-center pointer-events-none select-none">
           <div className="w-[1px] h-6 bg-gradient-to-t from-electric-blue/50 to-transparent"></div>
           <div className="px-2 py-0.5 border border-electric-blue/40 bg-black/85 rounded text-[8px] font-mono font-bold text-electric-blue uppercase tracking-widest whitespace-nowrap glow-blue">
-            3S LiPo 2200mAh
+            3S LiPo
           </div>
         </div>
       </Html>
@@ -469,7 +469,7 @@ function DroneModel() {
       <Html position={[-0.65, 0.22, -0.65]} distanceFactor={4.5} center>
         <div className="flex flex-col items-center pointer-events-none select-none">
           <div className="px-2 py-0.5 border border-neon-purple/40 bg-black/85 rounded text-[8px] font-mono font-bold text-neon-purple uppercase tracking-widest whitespace-nowrap glow-purple">
-            F450 Frame Arm
+            F450 FRAME
           </div>
           <div className="w-[1px] h-5 bg-gradient-to-b from-neon-purple/50 to-transparent"></div>
         </div>
