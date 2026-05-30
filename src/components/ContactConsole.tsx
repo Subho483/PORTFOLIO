@@ -45,15 +45,30 @@ export default function ContactConsole() {
       addLog("UPLINK SECURED. DISCHARGING SUB-ETHER ENERGY PACKET...");
     }, 1400);
 
-    setTimeout(() => {
-      setIsSending(false);
-      setIsSent(true);
-      setName("");
-      setEmail("");
-      setMessage("");
-      addLog("SUCCESS: MESSAGE DISCHARGED INTO DEEP SPACE.");
-      addLog("SUBLIGHT LINK: TRANSMISSION DUMP COMPLETE.");
-    }, 2200);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (!res.ok) throw new Error("API Route Failed");
+
+      setTimeout(() => {
+        setIsSending(false);
+        setIsSent(true);
+        setName("");
+        setEmail("");
+        setMessage("");
+        addLog("SUCCESS: MESSAGE DISCHARGED INTO DEEP SPACE.");
+        addLog("SUBLIGHT LINK: TRANSMISSION DUMP COMPLETE.");
+      }, 2200);
+    } catch (error) {
+      setTimeout(() => {
+        setIsSending(false);
+        addLog("CRITICAL ERROR: SATELLITE CONNECTION REFUSED.");
+      }, 2200);
+    }
   };
 
   const handleCommandSubmit = (e: FormEvent) => {
